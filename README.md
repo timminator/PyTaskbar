@@ -1,63 +1,73 @@
-# PyTaskbar
-### The ultimate taskbar progress python package!
+<p align="center">
+  <h1 align="center">PyTaskbar</h1>
+  <p align="center">
+    The ultimate taskbar progress python package!
+    <br />
+  </p>
+</p>
 
-![](https://img.shields.io/github/downloads/somePythonProgrammer/PyTaskbar/total)
-![](https://img.shields.io/github/license/somePythonProgrammer/PyTaskbar?label=license)
-![visitor badge](https://visitor-badge.glitch.me/badge?page_id=somePythonProgrammer.PyTaskbar)
+<br>
 
-[Docs Here!](https://github.com/somePythonProgrammer/PyTaskbar/blob/main/DOCS.md)
+## ℹ About
 
-#### Works for both terminals and GUIs!
+This package allows you to control the taskbar progress bar and works seamlessly with modern Windows 10/11 and GUIs (Tkinter, PyQt, PySimpleGUI, etc.)!
 
-## Requirements:
+## **Example** (Using Tkinter):
 
-        comtypes
-        PyGetWindow
+```python
+import tkinter as tk
+
+import PyTaskbar
+
+root = tk.Tk()
+root.title('PyTaskbar Tkinter Example')
+root.geometry('300x150')
+
+status_label = tk.Label(root, text="Initializing...", font=("Helvetica", 12))
+status_label.pack(pady=40)
+
+root.update()
+
+hwnd = int(root.wm_frame(), 16)
+prog = PyTaskbar.Progress(hwnd)
+prog.init()
 
 
-## **Installation**
-[click here](https://github.com/somePythonProgrammer/PyTaskbar/blob/main/DOCS.md#installation)
-<HR>
-        
-## **Example**:
-
-    import time
-    import PyTaskbar
-
-    prog = PyTaskbar.Progress()
-    prog.init()
-
+def show_loading():
+    status_label.config(text="State: Loading")
     prog.setState('loading')
-    time.sleep(5)
+    root.after(3000, show_normal)
 
+
+def show_normal():
+    status_label.config(text="State: Normal (Progress)")
     prog.setState('normal')
 
-    for i in range(100):
-        prog.setProgress(i)
-        time.sleep(0.05)
-    prog.setProgress(0)
+    for i in range(0, 101):
+        root.after(i * 30, prog.setProgress, i)
 
-    prog.setState('warning')
+    root.after(3000 + 1000, show_paused)
 
-    for i in range(100):
-        prog.setProgress(i)
-        time.sleep(0.05)
 
-    prog.setProgress(0)
+def show_paused():
+    status_label.config(text="State: Paused")
+    prog.setProgress(50)
+    prog.setState('paused')
+    root.after(3000, show_error)
+
+
+def show_error():
+    status_label.config(text="State: Error")
     prog.setState('error')
+    root.after(3000, show_done)
 
-    for i in range(100):
-        prog.setProgress(i)
-        time.sleep(0.05)
 
-    prog.setProgress(0)
-
+def show_done():
+    status_label.config(text="State: Done!")
     prog.setState('done')
-    while True:
-        time.sleep(1)
-        print('close me!')
 
 
-<HR>
+root.after(1000, show_loading)
 
-### Happy Coding!
+root.mainloop()
+```

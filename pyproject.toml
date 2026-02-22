@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=77.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyTaskbarProgress"
+version = "0.0.8"
+description = "The ultimate taskbar progress python package!"
+readme = "README.md"
+authors = [
+    {name = "somePythonProgrammer"},
+    {name = "Tim Lodemann"}
+]
+requires-python = ">=3.6"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+]
+dependencies = [
+    "comtypes",
+]
+
+[project.urls]
+Homepage = "https://github.com/timminator/PyTaskbar"
+Repository = "https://github.com/timminator/PyTaskbar.git"
+Issues = "https://github.com/timminator/PyTaskbar/issues"
+
+[tool.setuptools]
+packages = ["PyTaskbar"]
+
+[tool.setuptools.package-data]
+PyTaskbar = ["*.tlb"]
+
+[tool.ruff]
+exclude = ["build", "venv", ".venv", "__pycache__"]
+preview = true
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "W"]
+ignore = ["E501", "SIM108", "SIM102", "SIM114"]

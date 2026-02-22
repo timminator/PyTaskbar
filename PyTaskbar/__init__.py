@@ -1,1 +1,1 @@
-from .ProgressAPI import Progress
+from .ProgressAPI import Progress as Progress
