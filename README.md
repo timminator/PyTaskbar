@@ -12,7 +12,19 @@
 
 This package allows you to control the taskbar progress bar and works seamlessly with modern Windows 10/11 and GUIs (Tkinter, PyQt, PySimpleGUI, etc.)!
 
-## **Example** (Using Tkinter):
+## Requirements
+
+- Python 3.9 or higher
+
+## How to Install
+
+```
+pip install git+https://github.com/timminator/PyTaskbar.git
+```
+
+## Usage
+
+The functionalities are explained in the following code snippet that is also provided in this repo:
 
 ```python
 import tkinter as tk

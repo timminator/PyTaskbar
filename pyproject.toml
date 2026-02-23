@@ -11,7 +11,7 @@ authors = [
     {name = "somePythonProgrammer"},
     {name = "Tim Lodemann"}
 ]
-requires-python = ">=3.6"
+requires-python = ">=3.9"
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows :: Windows 10",
