@@ -3,8 +3,8 @@ requires = ["setuptools>=77.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "PyTaskbarProgress"
-version = "0.0.8"
+name = "PyTaskbar"
+dynamic = ["version"]
 description = "The ultimate taskbar progress python package!"
 readme = "README.md"
 authors = [
@@ -14,10 +14,15 @@ authors = [
 requires-python = ">=3.9"
 classifiers = [
     "License :: OSI Approved :: MIT License",
-    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows",
 ]
-dependencies = [
-    "comtypes",
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "mypy",
+    "pre-commit",
+    "ruff",
 ]
 
 [project.urls]
@@ -25,11 +30,18 @@ Homepage = "https://github.com/timminator/PyTaskbar"
 Repository = "https://github.com/timminator/PyTaskbar.git"
 Issues = "https://github.com/timminator/PyTaskbar/issues"
 
+[tool.mypy]
+strict = true
+exclude = ["build"]
+
 [tool.setuptools]
 packages = ["PyTaskbar"]
 
 [tool.setuptools.package-data]
-PyTaskbar = ["*.tlb"]
+fast_ssim = ["py.typed"]
+
+[tool.setuptools.dynamic]
+version = {attr = "PyTaskbar.ProgressAPI.__version__"}
 
 [tool.ruff]
 exclude = ["build", "venv", ".venv", "__pycache__"]

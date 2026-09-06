@@ -16,13 +16,13 @@ prog = PyTaskbar.Progress(hwnd)
 prog.init()
 
 
-def show_loading():
+def show_loading() -> None:
     status_label.config(text="State: Loading")
     prog.setState('loading')
     root.after(3000, show_normal)
 
 
-def show_normal():
+def show_normal() -> None:
     status_label.config(text="State: Normal (Progress)")
     prog.setState('normal')
 
@@ -32,20 +32,20 @@ def show_normal():
     root.after(3000 + 1000, show_paused)
 
 
-def show_paused():
+def show_paused() -> None:
     status_label.config(text="State: Paused")
     prog.setProgress(50)
     prog.setState('paused')
     root.after(3000, show_error)
 
 
-def show_error():
+def show_error() -> None:
     status_label.config(text="State: Error")
     prog.setState('error')
     root.after(3000, show_done)
 
 
-def show_done():
+def show_done() -> None:
     status_label.config(text="State: Done!")
     prog.setState('done')
 
